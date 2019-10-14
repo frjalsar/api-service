@@ -38,6 +38,7 @@
     "pg": "^7.12.0",
     "pg-parameterize": "^2.0.2",
     "redis": "^2.8.0",
+    "redis-server": "^1.2.2",
     "superagent": "^5.1.0",
     "uid-safe": "^2.1.5",
     "uuid": "3.3.3"
