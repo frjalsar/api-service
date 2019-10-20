@@ -1,11 +1,16 @@
 const express = require('express')
 const makeCreateMeet = require('../lib/meets/create')
+const makeSelectMeets = require('../lib/meets/select')
 
 function makeMeetRoute (db) {
   const router = new express.Router()
 
   router.get('/', (req, res, next) => {
-    res.send('Kiddi sökkar')
+    const selectMeets = makeSelectMeets(db)
+    selectMeets()
+      .then(res.json.bind(res))
+      .catch(next)
+    // res.send('Kiddi sökkar')
   })
 
   router.post('/', (req, res, next) => {
