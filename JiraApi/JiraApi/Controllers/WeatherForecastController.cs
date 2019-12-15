@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -46,8 +48,19 @@ namespace JiraApi.Controllers
         }
 
         [HttpPost("blamm")]
-        public IActionResult Poster([FromBody] WeatherForecast forriForecast)
+        public IActionResult Poster([FromBody] fields JiraDot)
         {
+            // Þetta var samt til að getta
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://steini.atlassian.net/rest/api/2/issue/");
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return Ok(reader.ReadToEnd());
+            }
+
             return Ok();
             // return CreatedAtRoute("GetById", new {id=student.id}, student)
         }
