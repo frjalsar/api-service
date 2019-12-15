@@ -35,5 +35,23 @@ namespace JiraApi.Controllers
             })
             .ToArray();
         }
+
+        // Copy-a úr unicorn verkefninu, er að nota get og post þar. eða já bara checka hvort þetta sé ekki þægilegasta uppsetningin
+        
+
+        [HttpGet("blee", Name = "Getter")]
+        public IActionResult Getter()
+        {
+            return Ok("búúúúú!!");
+        }
+
+        [HttpPost("blamm")]
+        public IActionResult Poster([FromBody] WeatherForecast forriForecast)
+        {
+            return Ok();
+            // return CreatedAtRoute("GetById", new {id=student.id}, student)
+        }
+
+
     }
 }

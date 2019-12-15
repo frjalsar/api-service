@@ -1,0 +1,17 @@
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\obj\Debug\netcoreapp3.1\staticwebassets\JiraApi.StaticWebAssets.Manifest.cache
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\obj\Debug\netcoreapp3.1\staticwebassets\JiraApi.StaticWebAssets.xml
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\obj\Debug\netcoreapp3.1\JiraApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\obj\Debug\netcoreapp3.1\JiraApi.AssemblyInfoInputs.cache
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\obj\Debug\netcoreapp3.1\JiraApi.AssemblyInfo.cs
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\JiraApi.exe
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\JiraApi.deps.json
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\JiraApi.runtimeconfig.json
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\JiraApi.runtimeconfig.dev.json
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\JiraApi.dll
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\bin\Debug\netcoreapp3.1\JiraApi.pdb
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\obj\Debug\netcoreapp3.1\JiraApi.RazorTargetAssemblyInfo.cache
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\obj\Debug\netcoreapp3.1\JiraApi.dll
+C:\Users\Stein\Documents\GitHub\api-service\JiraApi\JiraApi\obj\Debug\netcoreapp3.1\JiraApi.pdb

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Stein\\Documents\\GitHub\\JiraApi\\JiraApi\\JiraApi.csproj": {}
+    "C:\\Users\\Stein\\Documents\\GitHub\\api-service\\JiraApi\\JiraApi\\JiraApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Stein\\Documents\\GitHub\\JiraApi\\JiraApi\\JiraApi.csproj": {
+    "C:\\Users\\Stein\\Documents\\GitHub\\api-service\\JiraApi\\JiraApi\\JiraApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Stein\\Documents\\GitHub\\JiraApi\\JiraApi\\JiraApi.csproj",
+        "projectUniqueName": "C:\\Users\\Stein\\Documents\\GitHub\\api-service\\JiraApi\\JiraApi\\JiraApi.csproj",
         "projectName": "JiraApi",
-        "projectPath": "C:\\Users\\Stein\\Documents\\GitHub\\JiraApi\\JiraApi\\JiraApi.csproj",
+        "projectPath": "C:\\Users\\Stein\\Documents\\GitHub\\api-service\\JiraApi\\JiraApi\\JiraApi.csproj",
         "packagesPath": "C:\\Users\\Stein\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Stein\\Documents\\GitHub\\JiraApi\\JiraApi\\obj\\",
+        "outputPath": "C:\\Users\\Stein\\Documents\\GitHub\\api-service\\JiraApi\\JiraApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Stein\\AppData\\Roaming\\NuGet\\NuGet.Config",
