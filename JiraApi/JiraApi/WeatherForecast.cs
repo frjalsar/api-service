@@ -13,6 +13,11 @@ namespace JiraApi
         public string Summary { get; set; }
     }
 
+    public class fieldHolder
+    {
+        public fields fields { get; set; }
+    }
+
     public class fields
     {
         public Project project { get; set; }

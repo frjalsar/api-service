@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -63,6 +66,64 @@ namespace JiraApi.Controllers
 
             return Ok();
             // return CreatedAtRoute("GetById", new {id=student.id}, student)
+        }
+
+
+
+
+
+
+
+        [HttpPost("hosthost")]
+        public IActionResult func([FromBody] fieldHolder JiraDot)
+        {
+            sender(JiraDot);
+            return Ok();
+        }
+
+        [HttpGet("send")]
+        public IActionResult func2()
+        {
+            getter();
+            return Ok();
+        }
+
+        public async void sender(fieldHolder JiraDot)
+        {
+            HttpClient client = new HttpClient();
+            var authString = Convert.ToBase64String(Encoding.UTF8.GetBytes("steini.tki@gmail.com:gqT1nhsuiSAb8zVsTk3975BC"));
+
+            string jsonString = JsonSerializer.Serialize(JiraDot);
+            // string strengur = "";
+
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", authString);
+            var response = await client.PostAsync("https://steini.atlassian.net/rest/api/2/issue/", new StringContent(jsonString, Encoding.UTF8, "application/json"));
+
+            // client.PostAsync(uri, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
+            
+            return;
+        }
+
+        public async void getter()
+        {
+            HttpClient client = new HttpClient();
+            var authString = Convert.ToBase64String(Encoding.UTF8.GetBytes("steini.tki@gmail.com:gqT1nhsuiSAb8zVsTk3975BC"));
+
+            // string jsonString = JsonSerializer.Serialize(JiraDot);
+            // string strengur = "";
+
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", authString);
+            var response = await client.GetAsync("https://steini.atlassian.net/rest/api/2/search?jql=project=PRUFA&maxResults=1000");
+
+            // client.PostAsync(uri, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
+
+
+            
+            // client.DefaultRequestHeaders.Accept.Clear();
+            // HttpResponseMessage response = await client.GetAsync("http://localhost:8080/document/quicksearch");
+
+               
+            return;
         }
 
 
