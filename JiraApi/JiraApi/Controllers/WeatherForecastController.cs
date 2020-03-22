@@ -84,7 +84,8 @@ namespace JiraApi.Controllers
         [HttpGet("send")]
         public IActionResult func2()
         {
-            getter();
+            Getterinn();
+            // getter();
             return Ok();
         }
 
@@ -104,26 +105,30 @@ namespace JiraApi.Controllers
             return;
         }
 
-        public async void getter()
+
+        public async void Getterinn()
         {
             HttpClient client = new HttpClient();
-            var authString = Convert.ToBase64String(Encoding.UTF8.GetBytes("steini.tki@gmail.com:gqT1nhsuiSAb8zVsTk3975BC"));
+            var TARGETURL = "https://steini.atlassian.net/rest/api/2/search?jql=project=PRUFA&maxResults=1000";
 
-            // string jsonString = JsonSerializer.Serialize(JiraDot);
-            // string strengur = "";
+            var byteArray = Encoding.ASCII.GetBytes("steini.tki@gmail.com:gqT1nhsuiSAb8zVsTk3975BC");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
 
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", authString);
-            var response = await client.GetAsync("https://steini.atlassian.net/rest/api/2/search?jql=project=PRUFA&maxResults=1000");
+            HttpResponseMessage response = await client.GetAsync(TARGETURL);
+            HttpContent content = response.Content;
 
-            // client.PostAsync(uri, new StringContent(jsonInString, Encoding.UTF8, "application/json"));
+            // ... Check Status Code                                
+            Console.WriteLine("Response StatusCode: " + (int)response.StatusCode);
 
+            // ... Read the string.
+            string result = await content.ReadAsStringAsync();
 
-            
-            // client.DefaultRequestHeaders.Accept.Clear();
-            // HttpResponseMessage response = await client.GetAsync("http://localhost:8080/document/quicksearch");
-
-               
-            return;
+            // ... Display the result.
+            if (result != null &&
+            result.Length >= 50)
+            {
+                Console.WriteLine(result.Substring(0, 50) + "...");
+            }
         }
 
 
