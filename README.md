@@ -15,7 +15,7 @@ Kerfið er byggt upp sem einfalt REST API og er skrifað í nodeJS með Postgres
 6. Opnaðu vafrann á http://local.fri.is:3000
 
 ### Kóði
-Kóðinn  er skrifaður í NodeJS og notar blöndu af require og dependency injection. Á neðsta lagi (index.js) er redis og postgres tengingar settar upp og injectað inn í service.js sem hendir þeim áfram inn í express routera. Þar er notað require til að taka inn repo/lib módúla sem taka inn gagnagrunnstengingarnar. Db poolinu er því injectað en ekki repo-um.
+Kóðinn  er skrifaður í NodeJS og notar blöndu af require og dependency injection. Á neðsta lagi (index.js) er gagnagrunnstengingar eins redis og postgres tengingar settar upp ásamt logger og injectað inn í service.js sem hendir þeim áfram inn í express routera. Þar er notað require til að taka inn repo/lib módúla sem taka inn gagnagrunnstengingarnar. Db poolinu er því injectað en ekki repo-um.
 
 #### /server/index.js
 Þetta er entry-pointið þar sem Postgres og Redis tengingarnar eru búnar til og þar sem þjónustan er sótt og keyrð upp með þeim tengingum.
@@ -30,14 +30,23 @@ Endapunkturinn fyrir íþróttafélög. Það sækir repo/módúla frá lib möp
 Gagnagrunnskóði fyrir írþóttafélög. Hvert fall hefur sína skrá. Sem dæmi má nefna select.js sem sækir upplýsingar um íþróttafélag. Það er er einfalt fall sem heitir makeSelectClubs sem tekur inn gagnagrunnstenginguna sem dependency og skilar falli sem sækir gögnin.
 
 ### Aðgangur og leyfi
-Kerfið er lokað bakvið innskráningu. Hægt er að skrá sig inn á /login með því að senda username og password. Við það gerast eftirfarandi hlutir:
+Kerfið er opið til að skoða í vafra en hefur tvennskonar læsingar.
 
-1. Kerfið flettir upp notendanum í gagnagrunni.
-2. Ef notandinn er til býr kerfið til API lykill.
+## CORS (Ytri kerfi að sækja upplýsingar)
+Kerfið leyfir bara fyrirfram ákveðnum þjónustum/kerfum að tala við sig. Í kóðanum er til whitelist fyrir production og developpment umhverfi.  Til að fá development umhverfið til að virka er nóg að bæta við local.fri.is í host skrána þar sem api-service leyfir það fyrir development umhverfi.
+
+## Innskráning
+Til að breyta upplýsingum þarf að skrá sig inn. Hægt er að skrá sig inn á /user/login með því að senda username og password. Við það gerast eftirfarandi hlutir:
+
+1. Kerfið flettir upp notendanum í postgres gagnagrunninum.
+2. Ef notandinn er til býr kerfið til API lykil/token.
 3. Lykillinn er vistaður í Redis grunni ásamt notendaupplýsingum.
-4. Notendaupplýsingar eru sendar til baka.
-5. Það er ábyrgð kerfisins sem skráði sig inn að halda utan um API lykilinn. 
-6. Hægt er að senda API lykilinn sem Bearer eða köku.
+4. Kerfið sendir kökuna FRI_API_TOKEN sem er httpOnly, secure og með 10 ára líftíma til baka. 
+5. Kerfið sendir almennar notendaupplýsingar til baka sem JSON.
+
+Athugið að þetta auðkennir bara notandann fyrir api-service. Þú þarft að halda utan um session á þinni síðu. API þjónustan er stateless og heldur ekki utan um sessions heldur tekur bara á móti token í formi köku eða Bearer til að auðkenna fyrirspurn. Kerfið sendir notendaupplýsingarnar líka sem JSON þegar viðkomandi skráir sig inn og því auðvelt að halda utan um slíkt í clientinum með köku eða storage (td. session eða local). Þær upplýsingar eru ekki viðkvæmar (nafn, félag) og innihalda engar upplýsingar sem api-service notar til að auðkenna notendann. Þær upplýsingar eru í FRI_API_TOKEN kökunni sem er httpOnly og secure. Þessi token ætti aldrei að vera geymdur á clientinum þar sem hægt er að stela honum.
+
+Það er hægt að senda fyrirspurn á http://api.fri.is/user með kökunni til að sjá hvaða notandi er bakvið tokenið. Ef þú ert að smíða nýtt kerfi er ráðlagt að 
 
 ### Coding rules
 Kóðasafnið notar eslint-standard til að viðhalda sama kóðastíl af öllum sem snerta á verkefninu. Með því verður allur kóðu samræmdur og við lendum ekki í óþarfa breytingasögum sem snúast um formatting. 
@@ -54,4 +63,4 @@ Kóðasafnið hefur pre-commit krók sem keyrir linter til að vera viss um að 
 Þegar ný útgáfa kemur inn á master branchið þá fer breytingin strax live. Allar stærri breytingar ættu að fara fyrst inn á sér branch sem er síðan mergað inn á masterinn.
 
 ### Test
-Það eru til nokkur test undir /test möppunni. Þeim er ábótavant.
+Þeim er ábótavant.

@@ -1,25 +1,16 @@
-const parseCookie = require('cookie').parse
+const getToken = require('./gettoken')
 
-function makeAuthorize (redisClient) {
-  return function setUser () {
+function makeAuthorize (redisClient, logger) {
+  return function authorize () {
     return (req, res, next) => {
-      let token
-      if (req.headers.cookie) {
-        token = parseCookie(req.headers.cookie).FRI_API_TOKEN
-      }
-
-      if (req.headers.authorization) {
-        const parts = req.headers.authorization.split(' ')
-        if (parts.length === 2 && parts[0] === 'Bearer') {
-          token = parts[1]
-        }
-      }
+      const token = getToken(req.headers)
 
       if (token) {
         redisClient.get(token, (err, reply) => {
           if (err) {
-            console.log('Error authorizing', err)
-            return next()
+            logger.error('Error authorizing')
+            logger.error(err)
+            return res.sendStatus(401)
           }
 
           if (!reply) {

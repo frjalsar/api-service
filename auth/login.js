@@ -22,9 +22,8 @@ function makeLogin (pgPool, redisClient) {
           } else {
             return uid(18).then(token => {
               user.password = undefined
-              redisClient.set(token, JSON.stringify(user), 'EX', 604800)
-              user.token = token
-              return user
+              redisClient.set(token, JSON.stringify(user))
+              return { info: user, token }
             })
           }
         })

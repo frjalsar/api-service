@@ -2,7 +2,7 @@ const express = require('express')
 const makeSelectThorEvents = require('../lib/thor/events')
 const makeSelectThorAchievements = require('../lib/thor/achievements')
 
-function makeThorRoute (sqlConnection) {
+function makeThorRoute (sqlConnection, logger) {
   const router = express.Router()
   const selectThorEvents = makeSelectThorEvents(sqlConnection)
   const selectThorAchievements = makeSelectThorAchievements(sqlConnection)
@@ -17,6 +17,11 @@ function makeThorRoute (sqlConnection) {
     selectThorAchievements(req.query)
       .then(res.json.bind(res))
       .catch(next)
+  })
+
+  router.post('/meet', (_, res) => {
+    logger.info('GOT HIT BY JIRA WEBHOOK')
+    res.send('GOT HIT BY JIRA WEBHOOK')
   })
 
   return router
